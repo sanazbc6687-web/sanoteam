@@ -139,7 +139,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('companyDetails');
   if (!modal) return;
   const candidates = [...document.querySelectorAll('a,button')];
-  const aboutButtons = candidates.filter(el => /توضیحات بیشتر/.test((el.textContent || '').trim())).slice(0,1);
+  const aboutButtons = candidates.filter(el => {
+    const label = (el.textContent || '').trim();
+    return /توضیحات بیشتر|Learn More|More Details|المزيد|مزيد من التفاصيل/.test(label);
+  }).slice(0,1);
   function openAbout(e){ if(e) e.preventDefault(); modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
   function closeAbout(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   aboutButtons.forEach(el => el.addEventListener('click', openAbout));
