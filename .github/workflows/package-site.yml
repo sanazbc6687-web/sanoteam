@@ -26,3 +26,5 @@ jobs:
           name: sanoteam-seo-ready
           path: sanoteam-seo-ready.zip
           retention-days: 7
+
+# package-version: seo-content-2026-09-27-v2
