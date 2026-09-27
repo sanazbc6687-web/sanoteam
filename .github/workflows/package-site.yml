@@ -1,0 +1,28 @@
+name: Package SANO Team site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/package-site.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create deployment ZIP
+        run: zip -r sanoteam-seo-ready.zip . -x ".git/*" ".github/*"
+
+      - name: Upload deployment ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanoteam-seo-ready
+          path: sanoteam-seo-ready.zip
+          retention-days: 7
